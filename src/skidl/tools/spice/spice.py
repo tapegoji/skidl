@@ -109,12 +109,23 @@ def load_sch_lib(self, filename=None, lib_search_paths_=None, lib_section=None):
         )
 
     # Read the Spice library from the given path.
-    spice_lib = SpiceLibrary(
+    try:
+        spice_lib = SpiceLibrary(
+        root_path=spice_lib_path, scan=True
+        )
+        pyspice_ver = 1.6
+    except:
+        spice_lib = SpiceLibrary(
         root_path=spice_lib_path, recurse=True, section=lib_section
-    )
+        )
+        pyspice_ver = 1.5
+
 
     # Get the unique set of files referenced by the subcircuits in the Spice library.
-    lib_files = set([str(spice_lib[subcirc]) for subcirc in spice_lib.subcircuits])
+    if pyspice_ver == 1.6:
+        lib_files = set([str(spice_lib[subcirc].path) for subcirc in spice_lib.subcircuits])
+    else:
+        lib_files = set([str(spice_lib[subcirc]) for subcirc in spice_lib.subcircuits])
 
     # Go through the files and create a SKiDL Part for each subcircuit.
     for lib_file in lib_files:
@@ -308,9 +319,12 @@ def gen_netlist(self, **kwargs):
                     if not default_libs:
                         # Read the default SPICE libraries.
                         for path in lib_search_paths[SPICE]:
-                            default_libs.append(
-                                SpiceLibrary(root_path=path, recurse=True)
-                            )
+                            try:
+                                spice_lib = SpiceLibrary(root_path=path, scan=True)
+                            except:
+                                spice_lib = SpiceLibrary(root_path=path, recurse=True)
+
+                            default_libs.append(spice_lib)
 
                     # Search for the model in the default libraries.
                     path = None
