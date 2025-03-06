@@ -109,9 +109,12 @@ def load_sch_lib(self, filename=None, lib_search_paths_=None, lib_section=None):
         )
 
     # Read the Spice library from the given path.
+
     try:
+        if os.path.isfile(spice_lib_path):
+            spice_lib_folder = os.path.dirname(spice_lib_path)
         spice_lib = SpiceLibrary(
-        root_path=spice_lib_path, scan=True
+        root_path=spice_lib_folder, scan=True
         )
         pyspice_ver = 1.6
     except:
