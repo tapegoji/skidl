@@ -323,9 +323,14 @@ def gen_netlist(self, **kwargs):
                         # Read the default SPICE libraries.
                         for path in lib_search_paths[SPICE]:
                             try:
+                                path = os.path.abspath(path)
+                                if not os.path.isdir(path):
+                                    continue
                                 spice_lib = SpiceLibrary(root_path=path, scan=True)
+                                pyspice_ver = 1.6
                             except:
                                 spice_lib = SpiceLibrary(root_path=path, recurse=True)
+                                pyspice_ver = 1.5
 
                             default_libs.append(spice_lib)
 
@@ -333,10 +338,13 @@ def gen_netlist(self, **kwargs):
                     path = None
                     for lib in default_libs:
                         try:
-                            path = lib[model]
+                            if pyspice_ver == 1.6:
+                                path = lib[model].path
+                            else:
+                                path = lib[model]
                             break
                         except KeyError:
-                            pass
+                                pass
                     if path == None:
                         active_logger.error(
                             "Unable to find model {} for part {}".format(
