@@ -25,19 +25,24 @@ generate_netlist()
 # generate_pcb()
 
 ####################################################################################################
+set_default_tool(SPICE)
 
-from PySpice import Circuit, Simulator
+from PySpice.Doc.ExampleTools import find_libraries
+from PySpice import SpiceLibrary, Circuit, Simulator
 from PySpice.Unit import *
+from skidl.pyspice import *
 
-### Create a circuit based on the skidl netlist
-circuit = Circuit('Voltage Divider')
-for prt in default_circuit.parts:
-    if prt.ref.startswith('R'):
-        circuit.R(prt.ref[1:], prt.p1.net.name, prt.p2.net.name, prt.value)
+libraries_path = find_libraries()
+spice_library = SpiceLibrary(libraries_path)
 
-# add a voltage source
-circuit.V('VI', vin.name, gnd.name, 5@u_V)
+
+circuit = generate_netlist()
 print(circuit)
+
+# The rest would be similar to the example from the PySpice documentation:
+# https://pyspice.fabrice-salvaire.fr/releases/v1.6/
+
+circuit.V('VI', vin.name, gnd.name, 5@u_V)
 simulator = Simulator.factory()
 simulation = simulator.simulation(circuit, temperature=25, nominal_temperature=25)
 analysis = simulation.operating_point()

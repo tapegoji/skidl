@@ -308,7 +308,8 @@ def gen_netlist(self, **kwargs):
         try:
             pyspice = part.pyspice
         except AttributeError:
-            continue
+            if convert_for_spice(part, None, {}) is None:
+                continue
 
         model = getattr(part, "model", None)
         if model:
@@ -605,6 +606,24 @@ def convert_for_spice(part, spice_part, pin_map):
         pin_map (dict): Dict with pin numbers/names of part as keys and num/names of spice_part pins as replacement values.
     """
 
+    if spice_part is None:
+        from skidl.tools.skidl.libs import pyspice_sklib
+        _this_module = sys.modules[__name__]
+        for p in pyspice_sklib.pyspice_lib.get_parts():
+            # Add the part name to the module namespace.
+            setattr(_this_module, p.name, p)
+            # Add all the part aliases to the module namespace.
+            try:
+                for alias in p.aliases:
+                    setattr(_this_module, alias, p)
+            except AttributeError:
+                pass
+
+        if part.ref.startswith('R'):
+            spice_part = R
+            pin_map = {p.num : p.num for p in part.pins}
+        else:
+            raise Exception("Part not found in PySpice library")
     # Give the part access to the PySpice information from the SPICE part.
     part.pyspice = spice_part.pyspice
 
