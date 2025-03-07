@@ -29,7 +29,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
      *[
             Part(
                 name="A",
-                aliases=['A'],
+                aliases=['A', 'a'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['A', "XSpice element.'"],
@@ -50,7 +50,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="AcLine",
-                aliases=['V'],
+                aliases=['AcLine', 'acline'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['AcLine', 'V'],
@@ -88,7 +88,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="AmplitudeModulatedCurrentSource",
-                aliases=['I'],
+                aliases=['AmplitudeModulatedCurrentSource', 'amplitudemodulatedcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['AmplitudeModulatedCurrentSource', "amplitude modulated waveform current source.'", 'I'],
@@ -126,7 +126,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="AmplitudeModulatedVoltageSource",
-                aliases=['V'],
+                aliases=['AmplitudeModulatedVoltageSource', 'amplitudemodulatedvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['AmplitudeModulatedVoltageSource', "amplitude modulated waveform voltage source.'", 'V'],
@@ -164,7 +164,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="B",
-                aliases=['B'],
+                aliases=['B', 'b'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['B', "behavioral source.'"],
@@ -208,7 +208,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="BJT",
-                aliases=['Q', 'BJT'],
+                aliases=['BJT', 'bjt'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['BJT', "bipolar junction transistor.'", 'Q'],
@@ -273,7 +273,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="BehavioralCapacitor",
-                aliases=['BehavioralCapacitor'],
+                aliases=['BehavioralCapacitor', 'behavioralcapacitor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['BehavioralCapacitor', "behavioral capacitor.'"],
@@ -312,7 +312,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="BehavioralInductor",
-                aliases=['BehavioralInductor'],
+                aliases=['BehavioralInductor', 'behavioralinductor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['BehavioralInductor', "behavioral inductor.'"],
@@ -351,7 +351,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="BehavioralResistor",
-                aliases=['BehavioralResistor'],
+                aliases=['BehavioralResistor', 'behavioralresistor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['BehavioralResistor', "behavioral resistor.'"],
@@ -390,7 +390,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="BehavioralSource",
-                aliases=['B'],
+                aliases=['BehavioralSource', 'behavioralsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['BehavioralSource', "behavioral source.'", 'B'],
@@ -434,7 +434,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="BipolarJunctionTransistor",
-                aliases=['Q', 'BJT'],
+                aliases=['BipolarJunctionTransistor', 'bipolarjunctiontransistor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['BipolarJunctionTransistor', "bipolar junction transistor.'", 'Q', 'BJT'],
@@ -499,7 +499,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="C",
-                aliases=['C'],
+                aliases=['C', 'c'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['C', "capacitor.'"],
@@ -546,7 +546,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CCCS",
-                aliases=['F', 'CCCS'],
+                aliases=['CCCS', 'cccs'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CCCS', "linear current-controlled current sources (CCCS).'", 'F'],
@@ -587,7 +587,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CCS",
-                aliases=['W', 'CCS'],
+                aliases=['CCS', 'ccs'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CCS', "current controlled switch.'", 'W'],
@@ -626,7 +626,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CCVS",
-                aliases=['H', 'CCVS'],
+                aliases=['CCVS', 'ccvs'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CCVS', "linear current-controlled voltage sources (CCVS).'", 'H'],
@@ -664,7 +664,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Capacitor",
-                aliases=['C'],
+                aliases=['Capacitor', 'capacitor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Capacitor', "capacitor.'", 'C'],
@@ -711,7 +711,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CoupledInductor",
-                aliases=['K'],
+                aliases=['CoupledInductor', 'coupledinductor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CoupledInductor', 'K'],
@@ -734,7 +734,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CoupledMulticonductorLine",
-                aliases=['P'],
+                aliases=['CoupledMulticonductorLine', 'coupledmulticonductorline'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CoupledMulticonductorLine', 'P'],
@@ -757,7 +757,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CurrentControlledCurrentSource",
-                aliases=['F', 'CCCS'],
+                aliases=['CurrentControlledCurrentSource', 'currentcontrolledcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CurrentControlledCurrentSource', "linear current-controlled current sources (CCCS).'", 'F', 'CCCS'],
@@ -798,7 +798,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CurrentControlledSwitch",
-                aliases=['W', 'CCS'],
+                aliases=['CurrentControlledSwitch', 'currentcontrolledswitch'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CurrentControlledSwitch', "current controlled switch.'", 'W', 'CCS'],
@@ -837,7 +837,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CurrentControlledVoltageSource",
-                aliases=['H', 'CCVS'],
+                aliases=['CurrentControlledVoltageSource', 'currentcontrolledvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CurrentControlledVoltageSource', "linear current-controlled voltage sources (CCVS).'", 'H', 'CCVS'],
@@ -875,7 +875,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="CurrentSource",
-                aliases=['I'],
+                aliases=['CurrentSource', 'currentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['CurrentSource', 'I'],
@@ -913,7 +913,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="D",
-                aliases=['D'],
+                aliases=['D', 'd'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['D', "junction diode.'"],
@@ -961,7 +961,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Diode",
-                aliases=['D'],
+                aliases=['Diode', 'diode'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Diode', "junction diode.'", 'D'],
@@ -1009,7 +1009,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="ExponentialCurrentSource",
-                aliases=['I'],
+                aliases=['ExponentialCurrentSource', 'exponentialcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['ExponentialCurrentSource', "exponential waveform current source.'", 'I'],
@@ -1047,7 +1047,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="ExponentialVoltageSource",
-                aliases=['V'],
+                aliases=['ExponentialVoltageSource', 'exponentialvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['ExponentialVoltageSource', "exponential waveform voltage source.'", 'V'],
@@ -1085,7 +1085,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="F",
-                aliases=['F', 'CCCS'],
+                aliases=['F', 'f'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['F', "linear current-controlled current sources (CCCS).'", 'CCCS'],
@@ -1126,7 +1126,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="GSSElement",
-                aliases=['N'],
+                aliases=['GSSElement', 'gsselement'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['GSSElement', 'N'],
@@ -1146,7 +1146,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="H",
-                aliases=['H', 'CCVS'],
+                aliases=['H', 'h'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['H', "linear current-controlled voltage sources (CCVS).'", 'CCVS'],
@@ -1184,7 +1184,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="I",
-                aliases=['I'],
+                aliases=['I', 'i'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['I'],
@@ -1222,7 +1222,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Inductor",
-                aliases=['L'],
+                aliases=['Inductor', 'inductor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Inductor', 'L'],
@@ -1270,7 +1270,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="J",
-                aliases=['J', 'JFET'],
+                aliases=['J', 'j'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['J', "bipolar junction transistor.'", 'JFET'],
@@ -1323,7 +1323,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="JFET",
-                aliases=['J', 'JFET'],
+                aliases=['JFET', 'jfet'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['JFET', "bipolar junction transistor.'", 'J'],
@@ -1376,7 +1376,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="JunctionFieldEffectTransistor",
-                aliases=['J', 'JFET'],
+                aliases=['JunctionFieldEffectTransistor', 'junctionfieldeffecttransistor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['JunctionFieldEffectTransistor', "bipolar junction transistor.'", 'J', 'JFET'],
@@ -1429,7 +1429,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="K",
-                aliases=['K'],
+                aliases=['K', 'k'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['K'],
@@ -1452,7 +1452,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="L",
-                aliases=['L'],
+                aliases=['L', 'l'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['L'],
@@ -1500,7 +1500,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="LosslessTransmissionLine",
-                aliases=['TransmissionLine'],
+                aliases=['LosslessTransmissionLine', 'losslesstransmissionline'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['LosslessTransmissionLine', "lossless transmission line.'", 'TransmissionLine'],
@@ -1556,7 +1556,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="LossyTransmission",
-                aliases=['O'],
+                aliases=['LossyTransmission', 'lossytransmission'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['LossyTransmission', 'O'],
@@ -1609,7 +1609,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="M",
-                aliases=['M', 'MOSFET'],
+                aliases=['M', 'm'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['M', "Metal Oxide Field Effect Transistor.'", 'MOSFET'],
@@ -1680,7 +1680,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="MESFET",
-                aliases=['Z', 'MESFET'],
+                aliases=['MESFET', 'mesfet'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['MESFET', "Metal Semiconductor Field Effect Transistor.'", 'Z'],
@@ -1731,7 +1731,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="MOSFET",
-                aliases=['M', 'MOSFET'],
+                aliases=['MOSFET', 'mosfet'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['MOSFET', "Metal Oxide Field Effect Transistor.'", 'M'],
@@ -1802,7 +1802,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Mesfet",
-                aliases=['Z', 'MESFET'],
+                aliases=['Mesfet', 'mesfet'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Mesfet', "Metal Semiconductor Field Effect Transistor.'", 'Z', 'MESFET'],
@@ -1853,7 +1853,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Mosfet",
-                aliases=['M', 'MOSFET'],
+                aliases=['Mosfet', 'mosfet'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Mosfet', "Metal Oxide Field Effect Transistor.'", 'M', 'MOSFET'],
@@ -1924,7 +1924,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="N",
-                aliases=['N'],
+                aliases=['N', 'n'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['N'],
@@ -1944,7 +1944,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="NonLinearCurrentSource",
-                aliases=['NonLinearCurrentSource'],
+                aliases=['NonLinearCurrentSource', 'nonlinearcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['NonLinearCurrentSource', "non-linear current sources.'"],
@@ -1981,7 +1981,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="NonLinearVoltageSource",
-                aliases=['NonLinearVoltageSource'],
+                aliases=['NonLinearVoltageSource', 'nonlinearvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['NonLinearVoltageSource', "non-linear voltage source.'"],
@@ -2018,7 +2018,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="O",
-                aliases=['O'],
+                aliases=['O', 'o'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['O'],
@@ -2071,7 +2071,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="P",
-                aliases=['P'],
+                aliases=['P', 'p'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['P'],
@@ -2094,7 +2094,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="PieceWiseLinearCurrentSource",
-                aliases=['I'],
+                aliases=['PieceWiseLinearCurrentSource', 'piecewiselinearcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['PieceWiseLinearCurrentSource', "piece wise linear waveform current source.'", 'I'],
@@ -2132,7 +2132,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="PieceWiseLinearVoltageSource",
-                aliases=['V'],
+                aliases=['PieceWiseLinearVoltageSource', 'piecewiselinearvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['PieceWiseLinearVoltageSource', "piece wise linear waveform voltage source.'", 'V'],
@@ -2170,7 +2170,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="PulseCurrentSource",
-                aliases=['I'],
+                aliases=['PulseCurrentSource', 'pulsecurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['PulseCurrentSource', "pulse waveform current source.'", 'I'],
@@ -2208,7 +2208,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="PulseVoltageSource",
-                aliases=['V'],
+                aliases=['PulseVoltageSource', 'pulsevoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['PulseVoltageSource', "pulse waveform voltage source.'", 'V'],
@@ -2246,7 +2246,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Q",
-                aliases=['Q', 'BJT'],
+                aliases=['Q', 'q'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Q', "bipolar junction transistor.'", 'BJT'],
@@ -2311,7 +2311,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="R",
-                aliases=['R'],
+                aliases=['R', 'r'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['R', "resistor.'"],
@@ -2358,7 +2358,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="RandomCurrentSource",
-                aliases=['I'],
+                aliases=['RandomCurrentSource', 'randomcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['RandomCurrentSource', "random waveform current source.'", 'I'],
@@ -2396,7 +2396,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="RandomVoltageSource",
-                aliases=['V'],
+                aliases=['RandomVoltageSource', 'randomvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['RandomVoltageSource', "random waveform voltage source.'", 'V'],
@@ -2434,7 +2434,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Resistor",
-                aliases=['R'],
+                aliases=['Resistor', 'resistor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Resistor', "resistor.'", 'R'],
@@ -2481,7 +2481,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="S",
-                aliases=['S', 'VCS'],
+                aliases=['S', 's'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['S', "voltage controlled switch.'", 'VCS'],
@@ -2535,7 +2535,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="SemiconductorCapacitor",
-                aliases=['SemiconductorCapacitor'],
+                aliases=['SemiconductorCapacitor', 'semiconductorcapacitor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['SemiconductorCapacitor', "semiconductor capacitor.'"],
@@ -2586,7 +2586,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="SemiconductorResistor",
-                aliases=['SemiconductorResistor'],
+                aliases=['SemiconductorResistor', 'semiconductorresistor'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['SemiconductorResistor', "Semiconductor resistor.'"],
@@ -2638,7 +2638,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="SingleFrequencyFMCurrentSource",
-                aliases=['I'],
+                aliases=['SingleFrequencyFMCurrentSource', 'singlefrequencyfmcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['SingleFrequencyFMCurrentSource', "single frequency FM waveform current source.'", 'I'],
@@ -2676,7 +2676,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="SingleFrequencyFMVoltageSource",
-                aliases=['V'],
+                aliases=['SingleFrequencyFMVoltageSource', 'singlefrequencyfmvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['SingleFrequencyFMVoltageSource', "single frequency FM waveform voltage source.'", 'V'],
@@ -2714,7 +2714,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="SingleLossyTransmissionLine",
-                aliases=['Y'],
+                aliases=['SingleLossyTransmissionLine', 'singlelossytransmissionline'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['SingleLossyTransmissionLine', 'Y'],
@@ -2769,7 +2769,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="SinusoidalCurrentSource",
-                aliases=['I'],
+                aliases=['SinusoidalCurrentSource', 'sinusoidalcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['SinusoidalCurrentSource', "sinusoidal waveform current source.'", 'I'],
@@ -2807,7 +2807,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="SinusoidalVoltageSource",
-                aliases=['V'],
+                aliases=['SinusoidalVoltageSource', 'sinusoidalvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['SinusoidalVoltageSource', "sinusoidal waveform voltage source.'", 'V'],
@@ -2845,7 +2845,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="SubCircuitElement",
-                aliases=['X'],
+                aliases=['SubCircuitElement', 'subcircuitelement'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['SubCircuitElement', "sub-circuit.'", 'X'],
@@ -2867,7 +2867,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="TransmissionLine",
-                aliases=['TransmissionLine'],
+                aliases=['TransmissionLine', 'transmissionline'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['TransmissionLine', "lossless transmission line.'"],
@@ -2923,7 +2923,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="U",
-                aliases=['U'],
+                aliases=['U', 'u'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['U'],
@@ -2971,7 +2971,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="UniformDistributedRCLine",
-                aliases=['U'],
+                aliases=['UniformDistributedRCLine', 'uniformdistributedrcline'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['UniformDistributedRCLine', 'U'],
@@ -3019,7 +3019,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="V",
-                aliases=['V'],
+                aliases=['V', 'v'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['V'],
@@ -3057,7 +3057,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="VCCS",
-                aliases=['VCCS'],
+                aliases=['VCCS', 'vccs'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['VCCS', "linear voltage-controlled current sources (VCCS).'"],
@@ -3112,7 +3112,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="VCS",
-                aliases=['S', 'VCS'],
+                aliases=['VCS', 'vcs'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['VCS', "voltage controlled switch.'", 'S'],
@@ -3166,7 +3166,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="VCVS",
-                aliases=['VCVS'],
+                aliases=['VCVS', 'vcvs'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['VCVS', "linear voltage-controlled voltage sources (VCVS).'"],
@@ -3220,7 +3220,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="VoltageControlledCurrentSource",
-                aliases=['VCCS'],
+                aliases=['VoltageControlledCurrentSource', 'voltagecontrolledcurrentsource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['VoltageControlledCurrentSource', "linear voltage-controlled current sources (VCCS).'", 'VCCS'],
@@ -3275,7 +3275,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="VoltageControlledSwitch",
-                aliases=['S', 'VCS'],
+                aliases=['VoltageControlledSwitch', 'voltagecontrolledswitch'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['VoltageControlledSwitch', "voltage controlled switch.'", 'S', 'VCS'],
@@ -3329,7 +3329,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="VoltageControlledVoltageSource",
-                aliases=['VCVS'],
+                aliases=['VoltageControlledVoltageSource', 'voltagecontrolledvoltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['VoltageControlledVoltageSource', "linear voltage-controlled voltage sources (VCVS).'", 'VCVS'],
@@ -3383,7 +3383,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="VoltageSource",
-                aliases=['V'],
+                aliases=['VoltageSource', 'voltagesource'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['VoltageSource', 'V'],
@@ -3421,7 +3421,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="W",
-                aliases=['W', 'CCS'],
+                aliases=['W', 'w'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['W', "current controlled switch.'", 'CCS'],
@@ -3460,7 +3460,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="X",
-                aliases=['X'],
+                aliases=['X', 'x'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['X', "sub-circuit.'"],
@@ -3482,7 +3482,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="XSpiceElement",
-                aliases=['A'],
+                aliases=['XSpiceElement', 'xspiceelement'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['XSpiceElement', "XSpice element.'", 'A'],
@@ -3503,7 +3503,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Y",
-                aliases=['Y'],
+                aliases=['Y', 'y'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Y'],
@@ -3558,7 +3558,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
             ),
             Part(
                 name="Z",
-                aliases=['Z', 'MESFET'],
+                aliases=['Z', 'z'],
                 dest=TEMPLATE,
                 tool=SKIDL,
                 keywords=['Z', "Metal Semiconductor Field Effect Transistor.'", 'MESFET'],

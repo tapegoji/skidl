@@ -86,7 +86,7 @@ with open("/home/asepahvand/repos/skidl/src/skidl/tools/skidl/libs/skidlpyspice_
             pyspice = {}
 
             # Inspect attributes of the underlying ELEMENT_CLASS (e.g., "PINS", "PIN_NAMES", etc.).
-            aliases = []            
+            aliases = [name, name.lower()]           
             keywords = [name]
 
             for line in str(member.__doc__).split('\n'): 
@@ -110,7 +110,7 @@ with open("/home/asepahvand/repos/skidl/src/skidl/tools/skidl/libs/skidlpyspice_
                     continue
 
                 if 'alias' in nn.lower():
-                    aliases.append(mm)
+                    # aliases.append(mm)
                     keywords.append(mm) if mm not in keywords else None
                     continue
                 if nn == 'PINS':
