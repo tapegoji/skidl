@@ -552,7 +552,7 @@ def add_x_spice_to_circuit(part, circuit):
 
     # The device reference is always the first positional argument.
     kwargs = {}
-    args = [_get_spice_ref(part)]
+    args = [part.ref]  # for clarity its better to use the part reference as the first argument
     if part.ref_prefix == "A":
         # The XSPICE model name should be the only keyword argument.
         kwargs = ('model', part.model)
