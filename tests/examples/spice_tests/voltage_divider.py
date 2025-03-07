@@ -12,8 +12,13 @@ vin, vout, gnd = Net('VI'), Net('VO'), Net('GND')
 r1, r2 = 2 * Part("Device", 'R', TEMPLATE, footprint="Resistor_SMD:R_0603_1608Metric")
 r1.value = '1K'   # Set upper resistor value.
 r2.value = '500'  # Set lower resistor value.
+
 c1 = Part("Device", 'C', footprint="Capacitor_SMD:C_0603_1608Metric")
 c1.value = '1u'   # Set capacitor value.
+
+d1 = Part('Device', 'D', footprint='Diode_SMD:D_0603')
+d1.model = '1N4148'
+d1.fields['pin_map'] = {'K': 1, 'A': 2}  # pin map is based on the order in the spice model
 
 # Connect the nets and resistors.
 vin += r1[1]      # Connect the input to the upper resistor.
@@ -21,6 +26,9 @@ gnd += r2[2]      # Connect the lower resistor to ground.
 vout += r1[2], r2[1] # Output comes from the connection of the two resistors.
 vout += c1[1]
 gnd += c1[2]
+vout += d1['K']
+gnd += d1['A']
+
 
 # Output the netlist to a file.
 generate_netlist()
@@ -37,12 +45,14 @@ from PySpice.Doc.ExampleTools import find_libraries
 from PySpice import SpiceLibrary, Circuit, Simulator
 from PySpice.Unit import *
 
-libraries_path = find_libraries()
-spice_library = SpiceLibrary(libraries_path)
-
+# libraries_path = find_libraries()
+libraries_path = './tests/examples/spice-library/'
+# spice_library = SpiceLibrary(libraries_path)
+lib_search_paths[SPICE]=[libraries_path]
 
 circuit = generate_netlist()
 print(circuit)
+# circuit.include(spice_library['1N4148'])
 
 # The rest would be similar to the example from the PySpice documentation:
 # https://pyspice.fabrice-salvaire.fr/releases/v1.6/

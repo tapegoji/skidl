@@ -293,6 +293,7 @@ def gen_netlist(self, **kwargs):
     # Create an empty PySpice circuit.
     title = kwargs.pop("title", "")  # Get title and remove it from kwargs.
     circuit = PySpiceCircuit(title)
+    spice_lib = SpiceLibrary(lib_search_paths[SPICE][0])
 
     # Default SPICE libraries will be read-in down below if needed.
     default_libs = []
@@ -305,13 +306,17 @@ def gen_netlist(self, **kwargs):
     self.merge_nets()  # Merge multi-segment nets or else the SPICE netlist will be malformed.
 
     for part in self.parts:
+        model = getattr(part, "model", None)
+        if model:
+            add_x_spice_to_circuit(part, circuit, spice_lib)
+            continue
+
         try:
             pyspice = part.pyspice
         except AttributeError:
             if convert_for_spice(part, None, {}) is None:
                 continue
 
-        model = getattr(part, "model", None)
         if model:
             if isinstance(model, (XspiceModel, DeviceModel)):
                 circuit.model(*model.args, **model.kwargs)
@@ -533,6 +538,37 @@ def add_subcircuit_to_circuit(part, circuit):
             params = v
     getattr(circuit, part.pyspice["name"])(*args, **params)
 
+@export_to_all
+def add_x_spice_to_circuit(part, circuit, spice_library):
+    """
+    Add a X (subcircuit or model part) and XSPICE part to a PySpice Circuit object.
+
+    Args:
+        part: SKiDL Part object.
+        circuit: PySpice Circuit object.
+    """
+
+    # The device reference is always the first positional argument.
+    args = [_get_spice_ref(part)]
+    args.append(part.model)
+
+    # Add the pins to the argument list.
+    for pin in part.pins:
+        if isinstance(pin, Pin):
+            # Add a non-vector pin. Use _xspice_node() in case pin is unconnected.
+            args.append(_xspice_node(pin))
+        elif isinstance(pin, XspicePinList):
+            # Add pins from a pin vector.
+            args.append("[" + " ".join([node(p) for p in pin]) + "]")
+        else:
+            active_logger.error("Illegal XSPICE argument: {}".format(pin))
+
+    # The XSPICE model name should be the only keyword argument.
+    circuit.include(spice_library[part.model])
+
+    # Add the part to the PySpice circuit.
+    getattr(circuit, 'X')(*args)
+
 
 @export_to_all
 def add_xspice_to_circuit(part, circuit):
@@ -621,16 +657,16 @@ def convert_for_spice(part, spice_part, pin_map):
         #     except AttributeError:
         #         pass
         if 'pin_map' in part.fields:
-            pin_map = part.fields['pin_map']            
+            pin_map = part.pin_map
         else:
             pin_map = {}
         try:
             spice_part = next(prt for prt in skidlpyspice_sklib.pyspice_lib.get_parts() if prt.name == part.name)
-        except AttributeError:
+        except:
             active_logger.error("Part not found in PySpice library")
             return None
-        # if not pin_map:
-        #     pin_map = spice_part.pyspice['kw']['pin_map']
+        if not pin_map:
+            pin_map = spice_part.pyspice['kw']['pin_map']
         if pin_map == {}:
             active_logger.warning("No pin mapping found for part {}. We map pin to pin".format(part.name))
             pin_map = {pin.num: pin.num for pin in part.pins}
