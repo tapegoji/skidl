@@ -493,48 +493,6 @@ def add_part_to_circuit(part, circuit):
     getattr(circuit, part.pyspice["name"])(*args, **kwargs)
 
 
-@export_to_all
-def add_part_to_circuit2(part, kw, circuit):
-    """
-    Add a part to a PySpice Circuit object.
-
-    Args:
-        part: SKiDL Part object.
-        circuit: PySpice Circuit object.
-    """
-
-    # The device reference is always the first positional argument.
-    args = [_get_spice_ref(part)]
-
-    # Get keyword arguments.
-    pin_names_map = kw["pin_names_map"]
-       # Give the part the additional aliases from the SPICE part.
-    part.aliases += kw["ALIAS"]
-    if 'LONG_ALIAS' in kw:
-        part.aliases += kw["LONG_ALIAS"]
-
-    pin_map = {}
-    for pin in part.pins:        
-        pin_name = kw['pins_map'][(int(pin.num)-1)]
-        for key, value in pin_names_map.items():
-            if value == pin_name:
-                pin.name = key
-                kw[pin.name] = value
-                break
-        
-    kwargs = _get_kwargs(part, kw)
-
-    # Convert model argument if it exists and it's not a string.
-    try:
-        kwargs["model"] = part.model.name
-    except (KeyError, AttributeError):
-        # Don't change model kw param if it doesn't exist or is a string.
-        pass
-
-    # Add the part to the PySpice circuit.
-    getattr(circuit, kw["PREFIX"])(*args, **kwargs)
-
-
 def _get_net_names(part):
     """Return a list of net names attached to the pins of a part."""
     return [node(pin) for pin in part.pins if pin.is_connected()]
@@ -671,10 +629,11 @@ def convert_for_spice(part, spice_part, pin_map):
         except AttributeError:
             active_logger.error("Part not found in PySpice library")
             return None
-        if not pin_map:
-            pin_map = spice_part.pyspice['kw']['pin_map']
+        # if not pin_map:
+        #     pin_map = spice_part.pyspice['kw']['pin_map']
         if pin_map == {}:
-            raise Exception("Pin map was not found for the part. Specify it in the part fields.")
+            active_logger.warning("No pin mapping found for part {}. We map pin to pin".format(part.name))
+            pin_map = {pin.num: pin.num for pin in part.pins}
 
     # Give the part access to the PySpice information from the SPICE part.
     part.pyspice = spice_part.pyspice
