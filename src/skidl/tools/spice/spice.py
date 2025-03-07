@@ -283,7 +283,6 @@ def gen_netlist(self, **kwargs):
     """
 
     from skidl import lib_search_paths, SPICE
-    from skidl.tools.skidl.libs import pyspice1p6_sklib
 
     if sys.version_info.major == 2:
         active_logger.raise_(
@@ -309,8 +308,8 @@ def gen_netlist(self, **kwargs):
         try:
             pyspice = part.pyspice
         except AttributeError:
-            # if convert_for_spice(part, None, {}) is None:
-            continue
+            if convert_for_spice(part, None, {}) is None:
+                continue
 
         model = getattr(part, "model", None)
         if model:
@@ -386,11 +385,6 @@ def gen_netlist(self, **kwargs):
         else:
             add_func(part, circuit)
 
-    for part in self.parts:
-        kw = pyspice1p6_sklib.pyspice_lib[part.ref_prefix]
-        add_func = getattr(sys.modules[__name__], kw["add"])
-        add_func(part, kw, circuit)
-    
     return circuit
 
 
@@ -655,27 +649,33 @@ def convert_for_spice(part, spice_part, pin_map):
     """
 
     if spice_part is None:
-        from skidl.tools.skidl.libs import pyspice_sklib
+        # from skidl.tools.skidl.libs import pyspice_sklib
+        from skidl.tools.skidl.libs import skidlpyspice_sklib
+
         _this_module = sys.modules[__name__]
-        for p in pyspice_sklib.pyspice_lib.get_parts():
-            # Add the part name to the module namespace.
-            setattr(_this_module, p.name, p)
-            # Add all the part aliases to the module namespace.
-            try:
-                for alias in p.aliases:
-                    setattr(_this_module, alias, p)
-            except AttributeError:
-                pass
+        # for p in skidlpyspice_sklib.pyspice_lib.get_parts():
+        #     # Add the part name to the module namespace.
+        #     setattr(_this_module, p.name, p)
+        #     # Add all the part aliases to the module namespace.
+        #     try:
+        #         for alias in p.aliases:
+        #             setattr(_this_module, alias, p)
+        #     except AttributeError:
+        #         pass
         if 'pin_map' in part.fields:
-            pin_map = part.fields['pin_map']
+            pin_map = part.fields['pin_map']            
         else:
             pin_map = {}
-        if part.ref.startswith('R'):
-            spice_part = R
-            if not pin_map:
-                pin_map = {p.num : p.num for p in part.pins}
-        else:
-            raise Exception("Part not found in PySpice library")
+        try:
+            spice_part = next(prt for prt in skidlpyspice_sklib.pyspice_lib.get_parts() if prt.name == part.name)
+        except AttributeError:
+            active_logger.error("Part not found in PySpice library")
+            return None
+        if not pin_map:
+            pin_map = spice_part.pyspice['kw']['pin_map']
+        if pin_map == {}:
+            raise Exception("Pin map was not found for the part. Specify it in the part fields.")
+
     # Give the part access to the PySpice information from the SPICE part.
     part.pyspice = spice_part.pyspice
 
