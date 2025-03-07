@@ -47,12 +47,10 @@ from PySpice.Unit import *
 
 # libraries_path = find_libraries()
 libraries_path = './tests/examples/spice-library/'
-# spice_library = SpiceLibrary(libraries_path)
 lib_search_paths[SPICE]=[libraries_path]
 
 circuit = generate_netlist()
 print(circuit)
-# circuit.include(spice_library['1N4148'])
 
 # The rest would be similar to the example from the PySpice documentation:
 # https://pyspice.fabrice-salvaire.fr/releases/v1.6/

@@ -186,4 +186,9 @@ bin
 uno_r3
 *.bak
 *.pkl
+**/*db.pickle
+**/*.yaml
 
+runpy*
+*_sklib.py
+*.net

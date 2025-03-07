@@ -308,75 +308,77 @@ def gen_netlist(self, **kwargs):
     for part in self.parts:
         model = getattr(part, "model", None)
         if model:
-            add_x_spice_to_circuit(part, circuit, spice_lib)
+            circuit.include(spice_lib[part.model])
+            add_x_spice_to_circuit(part, circuit)
             continue
-
+        
         try:
             pyspice = part.pyspice
         except AttributeError:
             if convert_for_spice(part, None, {}) is None:
                 continue
 
-        if model:
-            if isinstance(model, (XspiceModel, DeviceModel)):
-                circuit.model(*model.args, **model.kwargs)
-            else:
-                try:
-                    path = pyspice["lib"][model]
-                except KeyError:
-                    # The part doesn't contain the library with the model, so look elsewhere.
-                    if not default_libs:
-                        # Read the default SPICE libraries.
-                        for path in lib_search_paths[SPICE]:
+        if 0:
+            if model:
+                if isinstance(model, (XspiceModel, DeviceModel)):
+                    circuit.model(*model.args, **model.kwargs)
+                else:
+                    try:
+                        path = pyspice["lib"][model]
+                    except KeyError:
+                        # The part doesn't contain the library with the model, so look elsewhere.
+                        if not default_libs:
+                            # Read the default SPICE libraries.
+                            for path in lib_search_paths[SPICE]:
+                                try:
+                                    path = os.path.abspath(path)
+                                    if not os.path.isdir(path):
+                                        continue
+                                    spice_lib = SpiceLibrary(root_path=path, scan=True)
+                                    pyspice_ver = 1.6
+                                except:
+                                    spice_lib = SpiceLibrary(root_path=path, recurse=True)
+                                    pyspice_ver = 1.5
+
+                                default_libs.append(spice_lib)
+
+                        # Search for the model in the default libraries.
+                        path = None
+                        for lib in default_libs:
                             try:
-                                path = os.path.abspath(path)
-                                if not os.path.isdir(path):
-                                    continue
-                                spice_lib = SpiceLibrary(root_path=path, scan=True)
-                                pyspice_ver = 1.6
-                            except:
-                                spice_lib = SpiceLibrary(root_path=path, recurse=True)
-                                pyspice_ver = 1.5
-
-                            default_libs.append(spice_lib)
-
-                    # Search for the model in the default libraries.
-                    path = None
-                    for lib in default_libs:
-                        try:
-                            if pyspice_ver == 1.6:
-                                path = lib[model].path
-                            else:
-                                path = lib[model]
-                            break
-                        except KeyError:
-                                pass
-                    if path == None:
-                        active_logger.error(
-                            "Unable to find model {} for part {}".format(
-                                model, part.ref
+                                if pyspice_ver == 1.6:
+                                    path = lib[model].path
+                                else:
+                                    path = lib[model]
+                                break
+                            except KeyError:
+                                    pass
+                        if path == None:
+                            active_logger.error(
+                                "Unable to find model {} for part {}".format(
+                                    model, part.ref
+                                )
                             )
-                        )
 
-                # Include the model file if it hasn't been included yet.
-                if path != None and path not in model_paths:
+                    # Include the model file if it hasn't been included yet.
+                    if path != None and path not in model_paths:
+                        circuit.include(path)
+                        model_paths.add(path)
+
+            try:
+                path, section = pyspice["lib_path"], pyspice["lib_section"]
+            except KeyError:
+                continue
+            if not section:
+                # Libraries without a section are added as include files.
+                if path not in lib_paths:
                     circuit.include(path)
-                    model_paths.add(path)
-
-        try:
-            path, section = pyspice["lib_path"], pyspice["lib_section"]
-        except KeyError:
-            continue
-        if not section:
-            # Libraries without a section are added as include files.
-            if path not in lib_paths:
-                circuit.include(path)
-                lib_paths.add(path)
-        else:
-            lib_id = (path, section)
-            if lib_id not in lib_ids:
-                circuit.lib(*lib_id)
-                lib_ids.add(lib_id)
+                    lib_paths.add(path)
+            else:
+                lib_id = (path, section)
+                if lib_id not in lib_ids:
+                    circuit.lib(*lib_id)
+                    lib_ids.add(lib_id)
 
     # Add each part in the SKiDL circuit to the PySpice circuit.
     # TODO: Make sure self.parts is processed in order that parts were created so ngspice doesn't get references to parts before they exist.
@@ -539,7 +541,7 @@ def add_subcircuit_to_circuit(part, circuit):
     getattr(circuit, part.pyspice["name"])(*args, **params)
 
 @export_to_all
-def add_x_spice_to_circuit(part, circuit, spice_library):
+def add_x_spice_to_circuit(part, circuit):
     """
     Add a X (subcircuit or model part) and XSPICE part to a PySpice Circuit object.
 
@@ -549,8 +551,14 @@ def add_x_spice_to_circuit(part, circuit, spice_library):
     """
 
     # The device reference is always the first positional argument.
+    kwargs = {}
     args = [_get_spice_ref(part)]
-    args.append(part.model)
+    if part.ref_prefix == "A":
+        # The XSPICE model name should be the only keyword argument.
+        kwargs = ('model', part.model)
+    else:
+        # subcircuit name is the second positional argument.
+        args.append(part.model)
 
     # Add the pins to the argument list.
     for pin in part.pins:
@@ -563,11 +571,8 @@ def add_x_spice_to_circuit(part, circuit, spice_library):
         else:
             active_logger.error("Illegal XSPICE argument: {}".format(pin))
 
-    # The XSPICE model name should be the only keyword argument.
-    circuit.include(spice_library[part.model])
-
     # Add the part to the PySpice circuit.
-    getattr(circuit, 'X')(*args)
+    getattr(circuit, 'X')(*args, **kwargs)
 
 
 @export_to_all

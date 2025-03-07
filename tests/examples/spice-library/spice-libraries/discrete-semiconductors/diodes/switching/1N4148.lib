@@ -23,7 +23,7 @@
 *
 *******************************************
 *
-.SUBCKT 1N4148 1 2 
+.SUBCKT 1N4148 2 1
 *
 * The resistor R1 does not reflect 
 * a physical device. Instead it
