@@ -12,11 +12,15 @@ vin, vout, gnd = Net('VI'), Net('VO'), Net('GND')
 r1, r2 = 2 * Part("Device", 'R', TEMPLATE, footprint="Resistor_SMD:R_0603_1608Metric")
 r1.value = '1K'   # Set upper resistor value.
 r2.value = '500'  # Set lower resistor value.
+c1 = Part("Device", 'C', footprint="Capacitor_SMD:C_0603_1608Metric")
+c1.value = '1u'   # Set capacitor value.
 
 # Connect the nets and resistors.
 vin += r1[1]      # Connect the input to the upper resistor.
 gnd += r2[2]      # Connect the lower resistor to ground.
 vout += r1[2], r2[1] # Output comes from the connection of the two resistors.
+vout += c1[1]
+gnd += c1[2]
 
 # Output the netlist to a file.
 generate_netlist()
@@ -26,11 +30,12 @@ generate_netlist()
 
 ####################################################################################################
 set_default_tool(SPICE)
+# from skidl.pyspice import *
+# r1.convert_for_spice(R, {1: "p", 2: "n"})
 
 from PySpice.Doc.ExampleTools import find_libraries
 from PySpice import SpiceLibrary, Circuit, Simulator
 from PySpice.Unit import *
-from skidl.pyspice import *
 
 libraries_path = find_libraries()
 spice_library = SpiceLibrary(libraries_path)
@@ -48,4 +53,4 @@ simulation = simulator.simulation(circuit, temperature=25, nominal_temperature=2
 analysis = simulation.operating_point()
 
 for node in analysis.nodes.values():
-    print('Node {}: {:5.2f} V'.format(str(node), float(node))) # Fixme: format value + unit
+    print('Node {}: {:5.2f} V'.format(str(node), float(node[0]))) # Fixme: format value + unit
