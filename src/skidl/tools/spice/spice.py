@@ -564,9 +564,9 @@ def add_x_spice_to_circuit(part, circuit):
     # Add the pins to the argument list.
     temp = []
     if 'pin_map' in part.fields:
-        for k in part.pin_map.values():
+        for k, v, in part.pin_map.items():
             for p in part.pins:
-                if p.num == k:
+                if str(p.name) == str(k):
                     temp.append(p)
         if temp == []:
             active_logger.error("Illegal XSPICE argument: {}".format(k))
