@@ -242,7 +242,7 @@ with open("/home/asepahvand/repos/skidl/src/skidl/tools/skidl/libs/skidlpyspice_
                 for k, v in pin_map.items():
                     for key, value in pyspice.items():
                         if v == value:
-                            tmp_map[k] = key
+                            tmp_map[key] = k
                 pin_map = tmp_map
         
                 pyspice['pin_map'] = pin_map
@@ -267,28 +267,28 @@ with open("/home/asepahvand/repos/skidl/src/skidl/tools/skidl/libs/skidlpyspice_
             pins = "[\n"
             # Iterate over the items in pin_map
             for num, ppname in pin_map.items():
-                    if ppname == '*':
+                    if num == '*':
                         continue
                     # Determine aliases based on the pin name
-                    if pyspice[ppname] in _POS_DIPOLE_ALIASES:
+                    if pyspice[num] in _POS_DIPOLE_ALIASES:
                         alias = "_POS_DIPOLE_ALIASES"
-                    elif pyspice[ppname] in _NEG_DIPOLE_ALIASES:
+                    elif pyspice[num] in _NEG_DIPOLE_ALIASES:
                         alias = "_NEG_DIPOLE_ALIASES"
-                    elif pyspice[ppname] in _POS_IN_PORT_ALIASES:
+                    elif pyspice[num] in _POS_IN_PORT_ALIASES:
                         alias = "_POS_IN_PORT_ALIASES"
-                    elif pyspice[ppname] in _NEG_IN_PORT_ALIASES:
+                    elif pyspice[num] in _NEG_IN_PORT_ALIASES:
                         alias = "_NEG_IN_PORT_ALIASES"
-                    elif '*' in ppname:
+                    elif '*' in num:
                         alias = []
                         continue
                     else:
                         alias = []
-                        alias.append(f'{pyspice[ppname]}')
+                        alias.append(f'{pyspice[num]}')
                     
                     # Append the formatted Pin block to the output string
                     pins += f"                  Pin(\n"
-                    pins += f"                      num=\"{num}\",\n"
-                    pins += f"                      name=\"{ppname}\",\n"
+                    pins += f"                      num=\"{ppname}\",\n"
+                    pins += f"                      name=\"{num}\",\n"
                     pins += f"                      func=pin_types.PASSIVE,\n"
                     pins += f"                      do_erc=True,\n"
                     pins += f"                      aliases={alias},\n"

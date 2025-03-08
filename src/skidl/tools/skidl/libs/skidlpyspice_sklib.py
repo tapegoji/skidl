@@ -59,7 +59,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "AcLine",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -97,7 +97,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "AmplitudeModulatedCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -135,7 +135,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "AmplitudeModulatedVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -173,7 +173,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "B",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "current_expression": "current_expression",
@@ -217,7 +217,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "BJT",
                          "kw": {
-                              "pin_map": {1: 'c', 2: 'b', 3: 'e', 4: 's'},
+                              "pin_map": {'c': 1, 'b': 2, 'e': 3, 's': 4},
                               "c": "collector",
                               "b": "base",
                               "e": "emitter",
@@ -282,7 +282,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "BehavioralCapacitor",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "capacitance_expression": "capacitance_expression",
@@ -321,7 +321,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "BehavioralInductor",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "inductance_expression": "inductance_expression",
@@ -360,7 +360,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "BehavioralResistor",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "resistance_expression": "resistance_expression",
@@ -399,7 +399,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "BehavioralSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "current_expression": "current_expression",
@@ -443,7 +443,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "BipolarJunctionTransistor",
                          "kw": {
-                              "pin_map": {1: 'c', 2: 'b', 3: 'e', 4: 's'},
+                              "pin_map": {'c': 1, 'b': 2, 'e': 3, 's': 4},
                               "c": "collector",
                               "b": "base",
                               "e": "emitter",
@@ -508,7 +508,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "C",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "capacitance",
@@ -555,7 +555,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "CCCS",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "current_gain",
@@ -596,7 +596,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "CCS",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "initial_state": "initial_state",
@@ -635,7 +635,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "CCVS",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "source": "source",
@@ -673,7 +673,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Capacitor",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "capacitance",
@@ -766,7 +766,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "CurrentControlledCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "current_gain",
@@ -807,7 +807,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "CurrentControlledSwitch",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "initial_state": "initial_state",
@@ -846,7 +846,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "CurrentControlledVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "source": "source",
@@ -884,7 +884,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "CurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -922,7 +922,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "D",
                          "kw": {
-                              "pin_map": {1: 'c', 2: 'a'},
+                              "pin_map": {'c': 1, 'a': 2},
                               "c": "cathode",
                               "a": "anode",
                               "area": "area",
@@ -970,7 +970,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Diode",
                          "kw": {
-                              "pin_map": {1: 'c', 2: 'a'},
+                              "pin_map": {'c': 1, 'a': 2},
                               "c": "cathode",
                               "a": "anode",
                               "area": "area",
@@ -1018,7 +1018,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "ExponentialCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -1056,7 +1056,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "ExponentialVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -1094,7 +1094,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "F",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "current_gain",
@@ -1155,7 +1155,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "H",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "source": "source",
@@ -1193,7 +1193,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "I",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -1231,7 +1231,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Inductor",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "dtemp": "device_temperature",
@@ -1279,7 +1279,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "J",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
@@ -1332,7 +1332,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "JFET",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
@@ -1385,7 +1385,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "JunctionFieldEffectTransistor",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
@@ -1461,7 +1461,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "L",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "dtemp": "device_temperature",
@@ -1509,7 +1509,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "LosslessTransmissionLine",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -1565,7 +1565,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "LossyTransmission",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -1618,7 +1618,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "M",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's', 4: 'b'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3, 'b': 4},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
@@ -1689,7 +1689,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "MESFET",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
@@ -1740,7 +1740,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "MOSFET",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's', 4: 'b'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3, 'b': 4},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
@@ -1811,7 +1811,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Mesfet",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
@@ -1862,7 +1862,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Mosfet",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's', 4: 'b'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3, 'b': 4},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
@@ -1953,7 +1953,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "NonLinearCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "transconductance": "transconductance",
@@ -1990,7 +1990,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "NonLinearVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "VALID_KWARGS": "VALID_KWARGS",
@@ -2027,7 +2027,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "O",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -2103,7 +2103,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "PieceWiseLinearCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2141,7 +2141,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "PieceWiseLinearVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2179,7 +2179,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "PulseCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2217,7 +2217,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "PulseVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2255,7 +2255,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Q",
                          "kw": {
-                              "pin_map": {1: 'c', 2: 'b', 3: 'e', 4: 's'},
+                              "pin_map": {'c': 1, 'b': 2, 'e': 3, 's': 4},
                               "c": "collector",
                               "b": "base",
                               "e": "emitter",
@@ -2320,7 +2320,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "R",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "ac": "ac",
@@ -2367,7 +2367,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "RandomCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2405,7 +2405,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "RandomVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2443,7 +2443,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Resistor",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "ac": "ac",
@@ -2490,7 +2490,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "S",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -2544,7 +2544,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "SemiconductorCapacitor",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "capacitance",
@@ -2595,7 +2595,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "SemiconductorResistor",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "ac": "ac",
@@ -2647,7 +2647,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "SingleFrequencyFMCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2685,7 +2685,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "SingleFrequencyFMVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2723,7 +2723,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "SingleLossyTransmissionLine",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -2778,7 +2778,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "SinusoidalCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2816,7 +2816,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "SinusoidalVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -2876,7 +2876,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "TransmissionLine",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -2932,7 +2932,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "U",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'ip', 3: ('capacitance_node',)},
+                              "pin_map": {'op': 1, 'ip': 2, ('capacitance_node',): 3},
                               "op": "output",
                               "ip": "input",
                               "('capacitance_node',)": "capacitance_node",
@@ -2980,7 +2980,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "UniformDistributedRCLine",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'ip', 3: ('capacitance_node',)},
+                              "pin_map": {'op': 1, 'ip': 2, ('capacitance_node',): 3},
                               "op": "output",
                               "ip": "input",
                               "('capacitance_node',)": "capacitance_node",
@@ -3028,7 +3028,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "V",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -3066,7 +3066,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "VCCS",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -3121,7 +3121,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "VCS",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -3175,7 +3175,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "VCVS",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -3229,7 +3229,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "VoltageControlledCurrentSource",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -3284,7 +3284,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "VoltageControlledSwitch",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -3338,7 +3338,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "VoltageControlledVoltageSource",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -3392,7 +3392,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "VoltageSource",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "value": "dc_value",
@@ -3430,7 +3430,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "W",
                          "kw": {
-                              "pin_map": {1: 'p', 2: 'n'},
+                              "pin_map": {'p': 1, 'n': 2},
                               "p": "plus",
                               "n": "minus",
                               "initial_state": "initial_state",
@@ -3512,7 +3512,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Y",
                          "kw": {
-                              "pin_map": {1: 'op', 2: 'on', 3: 'ip', 4: 'in'},
+                              "pin_map": {'op': 1, 'on': 2, 'ip': 3, 'in': 4},
                               "op": "output_plus",
                               "on": "output_minus",
                               "ip": "input_plus",
@@ -3567,7 +3567,7 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Z",
                          "kw": {
-                              "pin_map": {1: 'd', 2: 'g', 3: 's'},
+                              "pin_map": {'d': 1, 'g': 2, 's': 3},
                               "d": "drain",
                               "g": "gate",
                               "s": "source",
