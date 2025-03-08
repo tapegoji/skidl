@@ -563,7 +563,7 @@ def add_x_spice_to_circuit(part, circuit):
 
     # Add the pins to the argument list.
     temp = []
-    if'pin_map' in part.fields:
+    if 'pin_map' in part.fields:
         for k in part.pin_map.values():
             for p in part.pins:
                 if p.num == k:
