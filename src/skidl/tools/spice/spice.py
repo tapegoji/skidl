@@ -564,11 +564,14 @@ def add_x_spice_to_circuit(part, circuit):
     # Add the pins to the argument list.
     temp = []
     if'pin_map' in part.fields:
-        for k in part.pin_map:
+        for k in part.pin_map.values():
             for p in part.pins:
-                if p.name == k:
+                if p.num == k:
                     temp.append(p)
+        if temp == []:
+            active_logger.error("Illegal XSPICE argument: {}".format(k))
         part.pins = temp
+
     for pin in part.pins:
         if isinstance(pin, Pin):
             # Add a non-vector pin. Use _xspice_node() in case pin is unconnected.
@@ -680,7 +683,7 @@ def convert_for_spice(part, spice_part, pin_map):
     part.aliases += spice_part.aliases
 
     # Look-up pin names/numbers to create a mapping between actual Pin objects.
-    pin_map = [[part[dst], spice_part[src]] for dst, src in pin_map.items()]
+    pin_map = [[part[dst], spice_part[src]] for src, dst in pin_map.items()]
 
     # Pull some info from the SPICE part pins into the part pins.
     for dst_pin, src_pin in pin_map:
