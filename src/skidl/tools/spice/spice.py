@@ -314,7 +314,7 @@ def gen_netlist(self, **kwargs):
         
         try:
             pyspice = part.pyspice
-        except AttributeError:
+        except:
             if convert_for_spice(part, None, {}) is None:
                 continue
 
@@ -382,7 +382,7 @@ def gen_netlist(self, **kwargs):
 
     # Add each part in the SKiDL circuit to the PySpice circuit.
     # TODO: Make sure self.parts is processed in order that parts were created so ngspice doesn't get references to parts before they exist.
-    for part in self.parts:
+    # for part in self.parts:
         # Add each part using its add function which will be either
         # add_part_to_circuit() or add_subcircuit_to_circuit().
         try:
@@ -552,7 +552,7 @@ def add_x_spice_to_circuit(part, circuit):
 
     # The device reference is always the first positional argument.
     kwargs = {}
-    args = [part.ref]  # for clarity its better to use the part reference as the first argument
+    args = [part.ref]
     if part.ref_prefix == "A":
         # The XSPICE model name should be the only keyword argument.
         kwargs = ('model', part.model)
@@ -650,31 +650,20 @@ def convert_for_spice(part, spice_part, pin_map):
     if spice_part is None:
         # from skidl.tools.skidl.libs import pyspice_sklib
         from skidl.tools.skidl.libs import skidlpyspice_sklib
-
-        _this_module = sys.modules[__name__]
-        # for p in skidlpyspice_sklib.pyspice_lib.get_parts():
-        #     # Add the part name to the module namespace.
-        #     setattr(_this_module, p.name, p)
-        #     # Add all the part aliases to the module namespace.
-        #     try:
-        #         for alias in p.aliases:
-        #             setattr(_this_module, alias, p)
-        #     except AttributeError:
-        #         pass
-        if 'pin_map' in part.fields:
-            pin_map = part.pin_map
-        else:
-            pin_map = {}
         try:
             spice_part = next(prt for prt in skidlpyspice_sklib.pyspice_lib.get_parts() if prt.name == part.name)
         except:
             active_logger.error("Part not found in PySpice library")
             return None
-        if not pin_map:
-            pin_map = spice_part.pyspice['kw']['pin_map']
+        
         if pin_map == {}:
-            active_logger.warning("No pin mapping found for part {}. We map pin to pin".format(part.name))
-            pin_map = {pin.num: pin.num for pin in part.pins}
+            if 'pin_map' in part.fields:
+                pin_map = part.pin_map
+            elif 'pin_map' in spice_part.pyspice['kw']:
+                pin_map = spice_part.pyspice['kw']['pin_map']
+            else:
+                active_logger.warning("No pin mapping found for part {}. We map pin to pin".format(part.name))
+                pin_map = {pin.num: pin.num for pin in part.pins}
 
     # Give the part access to the PySpice information from the SPICE part.
     part.pyspice = spice_part.pyspice
@@ -690,6 +679,8 @@ def convert_for_spice(part, spice_part, pin_map):
         dst_pin.num = src_pin.num
         dst_pin.name = src_pin.name
         dst_pin.aliases += src_pin.aliases
+    
+    return True
 
 
 class XspicePinList(list):
