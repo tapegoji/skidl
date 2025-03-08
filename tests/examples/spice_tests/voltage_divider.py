@@ -18,7 +18,7 @@ c1.value = '1u'   # Set capacitor value.
 
 d1 = Part('Device', 'D', footprint='Diode_SMD:D_0603')
 d1.model = '1N4148'
-d1.fields['pin_map'] = {'K': 1, 'A': 2}  # pin map is based on the order in the spice model
+d1.fields['pin_map'] = {'A': 1, 'K': 2}  # pin map is based on the order in the spice model
 
 # Connect the nets and resistors.
 vin += r1[1]      # Connect the input to the upper resistor.

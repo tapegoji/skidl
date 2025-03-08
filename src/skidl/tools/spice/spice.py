@@ -316,6 +316,7 @@ def gen_netlist(self, **kwargs):
             pyspice = part.pyspice
         except:
             if convert_for_spice(part, None, {}) is None:
+                active_logger.error("Part has no SPICE model: {}".format(part))
                 continue
 
         if 0:
@@ -561,6 +562,13 @@ def add_x_spice_to_circuit(part, circuit):
         args.append(part.model)
 
     # Add the pins to the argument list.
+    temp = []
+    if'pin_map' in part.fields:
+        for k in part.pin_map:
+            for p in part.pins:
+                if p.name == k:
+                    temp.append(p)
+        part.pins = temp
     for pin in part.pins:
         if isinstance(pin, Pin):
             # Add a non-vector pin. Use _xspice_node() in case pin is unconnected.

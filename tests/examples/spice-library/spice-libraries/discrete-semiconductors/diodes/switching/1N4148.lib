@@ -16,14 +16,14 @@
 * Package pinning does not match Spice model pinning.
 * Package: SOD 27
 * 
-* Package Pin 1 : Cathode
-* Package Pin 2 : Anode
+* Package Pin 1 : Anode
+* Package Pin 2 : Cathode
 * 
 * Simulator: PSPICE
 *
 *******************************************
 *
-.SUBCKT 1N4148 2 1
+.SUBCKT 1N4148 1 2
 *
 * The resistor R1 does not reflect 
 * a physical device. Instead it
