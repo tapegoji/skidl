@@ -55,9 +55,7 @@ try:
     sim = Simulator.factory()
     sim= sim.simulation(circ)
 except:
-    # sim = circ.simulator()
-simulator= Simulator.factory()
-sim = simulator.simulation(circ)
+    sim = circ.simulator()
 waveforms = sim.transient(step_time=0.01 @ u_ms, end_time=5 @ u_ms)
 
 # Get the waveforms for the input and output.
