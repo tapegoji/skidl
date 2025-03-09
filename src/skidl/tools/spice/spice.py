@@ -109,25 +109,15 @@ def load_sch_lib(self, filename=None, lib_search_paths_=None, lib_section=None):
         )
 
     # Read the Spice library from the given path.
-
-    try:
-        if os.path.isfile(spice_lib_path):
-            spice_lib_folder = os.path.dirname(spice_lib_path)
-        spice_lib = SpiceLibrary(
-        root_path=spice_lib_folder, scan=True
-        )
-        pyspice_ver = 1.6
-    except:
-        spice_lib = SpiceLibrary(
+    spice_lib = SpiceLibrary(
         root_path=spice_lib_path, recurse=True, section=lib_section
-        )
-        pyspice_ver = 1.5
+    )
 
 
     # Get the unique set of files referenced by the subcircuits in the Spice library.
-    if pyspice_ver == 1.6:
+    try:
         lib_files = set([str(spice_lib[subcirc].path) for subcirc in spice_lib.subcircuits])
-    else:
+    except:
         lib_files = set([str(spice_lib[subcirc]) for subcirc in spice_lib.subcircuits])
 
     # Go through the files and create a SKiDL Part for each subcircuit.
@@ -293,7 +283,9 @@ def gen_netlist(self, **kwargs):
     # Create an empty PySpice circuit.
     title = kwargs.pop("title", "")  # Get title and remove it from kwargs.
     circuit = PySpiceCircuit(title)
-    spice_lib = SpiceLibrary(lib_search_paths[SPICE][0])
+    for _ in lib_search_paths[SPICE]:
+        spice_lib.append(SpiceLibrary(root_path=_))
+    # spice_lib = SpiceLibrary(lib_search_paths[SPICE][0])
 
     # Default SPICE libraries will be read-in down below if needed.
     default_libs = []
@@ -331,27 +323,18 @@ def gen_netlist(self, **kwargs):
                         if not default_libs:
                             # Read the default SPICE libraries.
                             for path in lib_search_paths[SPICE]:
-                                try:
-                                    path = os.path.abspath(path)
-                                    if not os.path.isdir(path):
-                                        continue
-                                    spice_lib = SpiceLibrary(root_path=path, scan=True)
-                                    pyspice_ver = 1.6
-                                except:
-                                    spice_lib = SpiceLibrary(root_path=path, recurse=True)
-                                    pyspice_ver = 1.5
-
-                                default_libs.append(spice_lib)
+                                default_libs.append(
+                                    SpiceLibrary(root_path=path, recurse=True)
+                                )
 
                         # Search for the model in the default libraries.
                         path = None
                         for lib in default_libs:
                             try:
-                                if pyspice_ver == 1.6:
+                                try:
                                     path = lib[model].path
-                                else:
+                                except:
                                     path = lib[model]
-                                break
                             except KeyError:
                                     pass
                         if path == None:
