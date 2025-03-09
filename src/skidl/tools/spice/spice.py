@@ -283,9 +283,9 @@ def gen_netlist(self, **kwargs):
     # Create an empty PySpice circuit.
     title = kwargs.pop("title", "")  # Get title and remove it from kwargs.
     circuit = PySpiceCircuit(title)
-    spice_lib = []
-    for _ in lib_search_paths[SPICE]:  # only include the ones that user has added. 
-        spice_lib.append(SpiceLibrary(root_path=_))
+    # spice_lib = []
+    # for _ in lib_search_paths[SPICE]:  # only include the ones that user has added. 
+    #     spice_lib.append(SpiceLibrary(root_path=_))
 
     # Default SPICE libraries will be read-in down below if needed.
     default_libs = []
@@ -297,61 +297,56 @@ def gen_netlist(self, **kwargs):
 
     self.merge_nets()  # Merge multi-segment nets or else the SPICE netlist will be malformed.
 
-    for part in self.parts:
-        model = getattr(part, "model", None)
-        if model:
-            for lib in spice_lib:
-                circuit.include(lib[part.model])
-            add_x_spice_to_circuit(part, circuit)
-            continue
-        
+    for part in self.parts:        
         try:
             pyspice = part.pyspice
         except:
             if convert_for_spice(part, None, {}) is None:
-                active_logger.error("Part has no SPICE model: {}".format(part))
-                continue
+                pass
+                # active_logger.error("Part has no SPICE model: {}".format(part))
+                # continue
 
-        if 0:
-            if model:
-                if isinstance(model, (XspiceModel, DeviceModel)):
-                    circuit.model(*model.args, **model.kwargs)
-                else:
-                    try:
-                        path = pyspice["lib"][model]
-                    except KeyError:
-                        # The part doesn't contain the library with the model, so look elsewhere.
-                        if not default_libs:
-                            # Read the default SPICE libraries.
-                            for path in lib_search_paths[SPICE]:
-                                default_libs.append(
-                                    SpiceLibrary(root_path=path, recurse=True)
-                                )
+        model = getattr(part, "model", None)
 
-                        # Search for the model in the default libraries.
-                        path = None
-                        for lib in default_libs:
-                            try:
-                                path = getattr(lib[model], "path", None)
-                                if not path:
-                                    path = lib[model]
-                            except KeyError:
-                                    pass
-                        if path == None:
-                            active_logger.error(
-                                "Unable to find model {} for part {}".format(
-                                    model, part.ref
-                                )
+        if model:
+            if isinstance(model, (XspiceModel, DeviceModel)):
+                circuit.model(*model.args, **model.kwargs)
+            else:
+                try:
+                    path = pyspice["lib"][model]
+                except:
+                    # The part doesn't contain the library with the model, so look elsewhere.
+                    if not default_libs:
+                        # Read the default SPICE libraries.
+                        for path in lib_search_paths[SPICE]:
+                            default_libs.append(
+                                SpiceLibrary(root_path=path, recurse=True)
                             )
 
-                    # Include the model file if it hasn't been included yet.
-                    if path != None and path not in model_paths:
-                        circuit.include(path)
-                        model_paths.add(path)
+                    # Search for the model in the default libraries.
+                    path = None
+                    for lib in default_libs:
+                        try:
+                            path = getattr(lib[model], "path", None)
+                            if not path:
+                                path = lib[model]
+                        except KeyError:
+                                pass
+                    if path == None:
+                        active_logger.error(
+                            "Unable to find model {} for part {}".format(
+                                model, part.ref
+                            )
+                        )
+
+                # Include the model file if it hasn't been included yet.
+                if path != None and path not in model_paths:
+                    circuit.include(path)
+                    model_paths.add(path)
 
             try:
                 path, section = pyspice["lib_path"], pyspice["lib_section"]
-            except KeyError:
+            except:
                 continue
             if not section:
                 # Libraries without a section are added as include files.
@@ -366,13 +361,19 @@ def gen_netlist(self, **kwargs):
 
     # Add each part in the SKiDL circuit to the PySpice circuit.
     # TODO: Make sure self.parts is processed in order that parts were created so ngspice doesn't get references to parts before they exist.
-    # for part in self.parts:
+    for part in self.parts:
         # Add each part using its add function which will be either
         # add_part_to_circuit() or add_subcircuit_to_circuit().
         try:
             add_func = part.pyspice["add"]
         except (AttributeError, KeyError):
-            active_logger.error("Part has no SPICE model: {}".format(part))
+            # this maybe a spice part with a model but not a pyspice part
+            # a newer way of handling parts with models. experimental
+            #TODO: needs more work. not the best way to handle this
+            try:
+                add_x_spice_to_circuit(part, circuit)
+            except:
+                active_logger.error("Part has no SPICE model: {}".format(part))
         else:
             add_func(part, circuit)
 
@@ -430,6 +431,8 @@ def _get_kwargs(part, kw):
                 kwargs.update({param_name: node(part_attr)})
             # If the keyword argument is a Pin, skip it. It gets handled below.
             elif isinstance(part_attr, Pin):
+                continue
+            elif isinstance(part_attr, (list, tuple, dict)):
                 continue
             else:
                 kwargs.update({param_name: part_attr})
@@ -658,6 +661,9 @@ def convert_for_spice(part, spice_part, pin_map):
             else:
                 active_logger.warning("No pin mapping found for part {}. We map pin to pin".format(part.name))
                 pin_map = {pin.num: pin.num for pin in part.pins}
+        model = getattr(part, "model", None)
+        if model:
+            spice_part.model = model
 
     # Give the part access to the PySpice information from the SPICE part.
     part.pyspice = spice_part.pyspice

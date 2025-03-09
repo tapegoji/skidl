@@ -922,9 +922,10 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "D",
                          "kw": {
-                              "pin_map": {'c': 1, 'a': 2},
+                              "pin_map": {'a': 1, 'k': 2},
                               "c": "cathode",
                               "a": "anode",
+                              "k": "cathode",
                               "area": "area",
                               "dtemp": "device_temperature",
                               "device_temperature": "device_temperature",
@@ -970,9 +971,10 @@ pyspice_lib = SchLib(tool=SKIDL).add_parts(
                 pyspice={
                          "name": "Diode",
                          "kw": {
-                              "pin_map": {'c': 1, 'a': 2},
+                              "pin_map": {'a': 1, 'k': 2},
                               "c": "cathode",
                               "a": "anode",
+                              "k": "cathode",
                               "area": "area",
                               "dtemp": "device_temperature",
                               "device_temperature": "device_temperature",
