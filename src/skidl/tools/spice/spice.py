@@ -364,16 +364,19 @@ def gen_netlist(self, **kwargs):
     for part in self.parts:
         # Add each part using its add function which will be either
         # add_part_to_circuit() or add_subcircuit_to_circuit().
-        try:
-            add_func = part.pyspice["add"]
-        except (AttributeError, KeyError):
+        model = getattr(part, "model", None)
+        if model:
             # this maybe a spice part with a model but not a pyspice part
             # a newer way of handling parts with models. experimental
             #TODO: needs more work. not the best way to handle this
             try:
                 add_x_spice_to_circuit(part, circuit)
             except:
-                active_logger.error("Part has no SPICE model: {}".format(part))
+                pass
+        try:
+            add_func = part.pyspice["add"]
+        except (AttributeError, KeyError):
+            active_logger.error("Part has no SPICE model: {}".format(part))
         else:
             add_func(part, circuit)
 
