@@ -373,6 +373,8 @@ def gen_netlist(self, **kwargs):
                 add_x_spice_to_circuit(part, circuit)
             except:
                 pass
+            else:
+                continue    
         try:
             add_func = part.pyspice["add"]
         except (AttributeError, KeyError):
@@ -553,10 +555,16 @@ def add_x_spice_to_circuit(part, circuit):
     # Add the pins to the argument list.
     temp = []
     if 'pin_map' in part.fields:
-        for k, v, in part.pin_map.items():
-            for p in part.pins:
-                if str(p.name) == str(k):
-                    temp.append(p)
+        for k in part.pin_map.keys():
+            break_loop = False
+            for pin in part.pins:
+                for alias in pin.aliases:
+                    if str(alias).lower() == str(k).lower():
+                        temp.append(pin)
+                        break_loop = True
+                        break
+                if break_loop:
+                    break
         if temp == []:
             active_logger.error("Illegal XSPICE argument: {}".format(k))
         part.pins = temp
