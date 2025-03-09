@@ -661,7 +661,7 @@ def convert_for_spice(part, spice_part, pin_map):
         try:
             spice_part = next(prt for prt in skidlpyspice_sklib.pyspice_lib.get_parts() if prt.name == part.name)
         except:
-            active_logger.info("Part not found in PySpice library. ", str(part.name))
+            active_logger.info(f"Part {str(part.name)} not found in PySpice default library. ")
             return None
         
         if pin_map == {}:
