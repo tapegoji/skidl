@@ -113,12 +113,12 @@ def load_sch_lib(self, filename=None, lib_search_paths_=None, lib_section=None):
         root_path=spice_lib_path, recurse=True, section=lib_section
     )
 
-
-    # Get the unique set of files referenced by the subcircuits in the Spice library.
-    try:
-        lib_files = set([str(spice_lib[subcirc].path) for subcirc in spice_lib.subcircuits])
-    except:
-        lib_files = set([str(spice_lib[subcirc]) for subcirc in spice_lib.subcircuits])
+    # # Get the unique set of files referenced by the subcircuits in the Spice library.
+    for subcirc in spice_lib.subcircuits:
+        path = getattr(spice_lib[subcirc], "path", None)
+        if not path:
+            path = spice_lib[subcirc]
+        lib_files = set([str(path)])
 
     # Go through the files and create a SKiDL Part for each subcircuit.
     for lib_file in lib_files:
@@ -283,9 +283,9 @@ def gen_netlist(self, **kwargs):
     # Create an empty PySpice circuit.
     title = kwargs.pop("title", "")  # Get title and remove it from kwargs.
     circuit = PySpiceCircuit(title)
-    for _ in lib_search_paths[SPICE]:
+    spice_lib = []
+    for _ in lib_search_paths[SPICE]:  # only include the ones that user has added. 
         spice_lib.append(SpiceLibrary(root_path=_))
-    # spice_lib = SpiceLibrary(lib_search_paths[SPICE][0])
 
     # Default SPICE libraries will be read-in down below if needed.
     default_libs = []
@@ -300,7 +300,8 @@ def gen_netlist(self, **kwargs):
     for part in self.parts:
         model = getattr(part, "model", None)
         if model:
-            circuit.include(spice_lib[part.model])
+            for lib in spice_lib:
+                circuit.include(lib[part.model])
             add_x_spice_to_circuit(part, circuit)
             continue
         
@@ -331,9 +332,8 @@ def gen_netlist(self, **kwargs):
                         path = None
                         for lib in default_libs:
                             try:
-                                try:
-                                    path = lib[model].path
-                                except:
+                                path = getattr(lib[model], "path", None)
+                                if not path:
                                     path = lib[model]
                             except KeyError:
                                     pass

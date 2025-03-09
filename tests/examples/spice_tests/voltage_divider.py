@@ -56,8 +56,11 @@ print(circuit)
 # https://pyspice.fabrice-salvaire.fr/releases/v1.6/
 
 circuit.V('VI', vin.name, gnd.name, 5@u_V)
-simulator = Simulator.factory()
-simulation = simulator.simulation(circuit, temperature=25, nominal_temperature=25)
+try:
+    simulator = Simulator.factory()
+    simulation = simulator.simulation(circuit, temperature=25, nominal_temperature=25)
+except:
+    simulation = circuit.simulator(temperature=25, nominal_temperature=25)
 analysis = simulation.operating_point()
 
 for node in analysis.nodes.values():
