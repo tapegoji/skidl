@@ -7,7 +7,7 @@ from skidl.pyspice import *  # isort:skip
 def test_skywater_1():
 
     sky_lib = SchLib(
-        "/home/devb/tmp/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice",
+         "/home/asepahvand/repos/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice",
         recurse=True,
         lib_section="tt",
     )
